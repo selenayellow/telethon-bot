@@ -1,9 +1,11 @@
+import os
 import json
 from telethon import TelegramClient, events
 
-# Ganti dengan API ID dan API Hash dari my.telegram.org
-api_id = 27070252  # Ganti dengan API ID kamu
-api_hash = "699eadbbf727532c43922a3ebea93020"  # Ganti dengan API Hash kamu
+# Ambil API ID, API HASH, dan SESSION_NAME dari Environment Variables
+api_id = int(os.getenv("API_ID"))
+api_hash = os.getenv("API_HASH")
+session_name = os.getenv("SESSION_NAME")
 
 # Channel sumber (hanya 1)
 source_channel = -1002693168185  # Ganti dengan ID channel sumber
@@ -12,7 +14,7 @@ source_channel = -1002693168185  # Ganti dengan ID channel sumber
 destination_channels = [-1002619037206, -4657535678, -1002368857256]  # Tambahkan ID channel tujuan lain
 
 # Buat client Telegram
-client = TelegramClient("session_name", api_id, api_hash)
+client = TelegramClient(session_name, api_id, api_hash)
 
 # File untuk menyimpan ID pesan
 DATA_FILE = "message_map.json"
